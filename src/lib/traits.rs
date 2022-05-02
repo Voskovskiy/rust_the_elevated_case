@@ -16,3 +16,10 @@ pub trait Deliverable {
 pub trait Sortable {
     fn sort_asc(&mut self);
 }
+
+pub trait Movable {
+    fn check_direction(&mut self);
+    fn change_direction(&mut self);
+    fn go_up(&mut self);
+    fn go_down(&mut self);
+}

@@ -1,5 +1,3 @@
-use std::thread::sleep;
-use std::time::Duration;
 use lib::{
     models::elevator::Elevator,
     helpers::Random,
@@ -39,7 +37,6 @@ fn main() {
         }
         // proceed to the next floor
         elevator.go_to_next_floor();
-        sleep(Duration::from_millis(500))
     }
 }
 
@@ -48,13 +45,17 @@ fn version() {
 }
 
 fn status(current_floor: u64, size: u64, capacity: u64, people_inside: u64) {
-    println!(
-        "Floor: {} [{}/{}] - People waiting: {}",
+    print!(
+        "Floor: {} [{}/{}]",
         current_floor,
         size,
         capacity,
-        people_inside,
-    )
+    );
+    if people_inside > 0 {
+        println!(" - People waiting: {}", people_inside);
+        return
+    }
+    println!()
 }
 
 fn passengers_arrived(qty: u64) {
